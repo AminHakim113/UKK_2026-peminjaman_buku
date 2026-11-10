@@ -247,4 +247,278 @@ Berikut beberapa perintah yang dapat digunakan untuk membantu menemukan masalah.
 php artisan route:list
 ```
 
-Digunakan
+Digunakan untuk melihat daftar route yang terdaftar pada aplikasi.
+
+2. Memeriksa migration
+
+```bash
+php artisan migrate:status
+```
+
+Digunakan untuk mengetahui migration yang sudah dan belum dijalankan.
+
+3. Membersihkan cache Laravel
+
+```bash
+php artisan optimize:clear
+```
+
+Digunakan untuk membersihkan cache aplikasi, konfigurasi, dan route.
+
+4. Melihat log error
+
+File yang digunakan:
+
+```text
+storage/logs/laravel.log
+```
+
+File tersebut menyimpan informasi kesalahan yang terjadi ketika aplikasi dijalankan.
+
+5. Memeriksa data menggunakan Tinker
+
+```bash
+php artisan tinker
+```
+
+Contoh perintah:
+
+```php
+App\Models\Book::count();
+App\Models\Loan::count();
+App\Models\User::count();
+```
+
+Perintah tersebut digunakan untuk memeriksa jumlah data yang tersimpan pada masing-masing tabel.
+
+6. Memeriksa koneksi database
+
+Memastikan konfigurasi berikut sudah sesuai dengan database yang digunakan:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=peminjaman_buku
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+
+
+4. Laporan Evaluasi Program
+
+A. Tujuan Program
+
+Tujuan pembuatan aplikasi ini adalah membangun sistem perpustakaan berbasis web yang dapat membantu pengelolaan data buku, pengguna, serta transaksi peminjaman dan pengembalian secara lebih mudah dan teratur.
+
+B. Hasil yang Dicapai
+
+Berdasarkan rancangan dan kode program, aplikasi memiliki beberapa hasil sebagai berikut:
+
+| No. | Bagian | Hasil yang Dicapai |
+|---|---|---|
+| 1 | Sistem Login | Menyediakan fitur login dan registrasi pengguna. |
+| 2 | Hak Akses | Membedakan akses admin dan siswa berdasarkan role. |
+| 3 | Database | Memiliki tabel users, books, dan loans. |
+| 4 | Manajemen Buku | Menyediakan pengelolaan data buku melalui Filament. |
+| 5 | Peminjaman | Menyediakan proses peminjaman dengan batas maksimal tiga buku. |
+| 6 | Pengembalian | Memperbarui status transaksi dan mengembalikan stok buku. |
+| 7 | Denda | Menghitung denda keterlambatan sebesar Rp1.000 per hari. |
+| 8 | Dashboard | Menampilkan jumlah buku, anggota, dan peminjaman aktif. |
+
+C. Kendala dan Penyelesaian
+
+| No. | Kendala | Penyelesaian |
+|---|---|---|
+| 1 | Pengaturan hak akses admin dan siswa. | Menggunakan fungsi isAdmin() untuk membedakan role pengguna. |
+| 2 | Pengelolaan stok buku. | Menggunakan decrement() saat peminjaman dan increment() saat pengembalian. |
+| 3 | Pembatasan jumlah peminjaman. | Menghitung jumlah transaksi aktif sebelum menyimpan peminjaman baru. |
+| 4 | Pembatasan data transaksi. | Menggunakan getEloquentQuery() agar siswa hanya melihat transaksi miliknya. |
+| 5 | Penghitungan denda. | Menghitung selisih tanggal jatuh tempo dengan tanggal pengembalian. |
+
+D. Kekurangan Program
+
+Walaupun aplikasi telah memiliki fitur utama, masih terdapat beberapa hal yang dapat ditingkatkan.
+
+| No. | Kekurangan | Keterangan |
+|---|---|---|
+| 1 | Notifikasi pengingat | Belum terdapat pengingat otomatis sebelum batas pengembalian. |
+| 2 | Laporan transaksi | Belum tersedia fitur ekspor laporan ke PDF atau Excel. |
+| 3 | Pencarian buku | Fitur pencarian masih dapat dikembangkan agar lebih lengkap. |
+| 4 | Riwayat denda | Belum tersedia pencatatan pembayaran denda secara terpisah. |
+| 5 | Keamanan transaksi | Proses perubahan stok dan transaksi perlu diperkuat agar aman ketika terjadi peminjaman bersamaan. |
+
+E. Rencana Pengembangan
+
+Untuk meningkatkan kualitas aplikasi, beberapa pengembangan yang dapat dilakukan adalah:
+
+| No. | Pengembangan | Manfaat |
+|---|---|---|
+| 1 | Pencarian buku | Memudahkan siswa menemukan buku berdasarkan judul, penulis, atau penerbit. |
+| 2 | Ekspor laporan PDF dan Excel | Memudahkan admin menyimpan dan mencetak laporan. |
+| 3 | Notifikasi pengembalian | Mengingatkan siswa mengenai batas waktu pengembalian. |
+| 4 | Riwayat pembayaran denda | Membantu pencatatan pembayaran denda. |
+| 5 | Grafik statistik | Menampilkan perkembangan peminjaman berdasarkan periode. |
+| 6 | Keamanan transaksi | Menghindari ketidaksesuaian stok ketika beberapa transaksi dilakukan bersamaan. |
+| 7 | Tampilan responsif | Membuat aplikasi lebih nyaman digunakan melalui komputer maupun ponsel. |
+
+F. Kesimpulan Evaluasi
+
+Aplikasi Peminjaman Buku berbasis Laravel dan Filament dibuat untuk membantu kegiatan pengelolaan perpustakaan sekolah secara digital.
+
+Aplikasi ini sudah memiliki rancangan pengelolaan buku, pengguna, peminjaman, pengembalian, perhitungan denda, dan dashboard statistik. Pembagian hak akses juga membantu membedakan tugas admin dan siswa.
+
+Dengan beberapa pengembangan tambahan, aplikasi ini dapat menjadi sistem perpustakaan yang lebih lengkap, aman, dan mudah digunakan.
+
+
+5. Entity Relationship Diagram (ERD)
+
+ERD (Entity Relationship Diagram) merupakan diagram yang digunakan untuk menggambarkan hubungan antar tabel dalam database.
+
+Aplikasi Peminjaman Buku menggunakan tiga tabel utama, yaitu users, books, dan loans.
+
+A. Tabel Users
+
+Tabel users digunakan untuk menyimpan informasi akun admin dan siswa.
+
+| Atribut | Tipe Data | Keterangan |
+|---|---|---|
+| id | BIGINT | Primary Key |
+| name | VARCHAR | Nama pengguna |
+| email | VARCHAR | Email pengguna (Unique) |
+| password | VARCHAR | Password akun |
+| role | VARCHAR | Jenis pengguna (admin/siswa) |
+| kelas | VARCHAR | Kelas siswa (nullable) |
+| email_verified_at | TIMESTAMP | Waktu verifikasi email |
+| remember_token | VARCHAR | Token pengingat login |
+| created_at | TIMESTAMP | Waktu data dibuat |
+| updated_at | TIMESTAMP | Waktu data diperbarui |
+
+B. Tabel Books
+
+Tabel books digunakan untuk menyimpan informasi buku yang tersedia di perpustakaan.
+
+| Atribut | Tipe Data | Keterangan |
+|---|---|---|
+| id | BIGINT | Primary Key |
+| title | VARCHAR | Judul buku |
+| author | VARCHAR | Nama penulis |
+| publisher | VARCHAR | Nama penerbit |
+| year | INTEGER | Tahun terbit |
+| stock | INTEGER | Jumlah stok buku |
+| created_at | TIMESTAMP | Waktu data dibuat |
+| updated_at | TIMESTAMP | Waktu data diperbarui |
+
+C. Tabel Loans
+
+Tabel loans digunakan untuk menyimpan informasi transaksi peminjaman dan pengembalian buku.
+
+| Atribut | Tipe Data | Keterangan |
+|---|---|---|
+| id | BIGINT | Primary Key |
+| user_id | BIGINT | Foreign Key dari tabel users |
+| book_id | BIGINT | Foreign Key dari tabel books |
+| loan_date | DATE | Tanggal peminjaman |
+| due_date | DATE | Batas pengembalian |
+| returned_at | DATE | Tanggal pengembalian (nullable) |
+| status | VARCHAR | Status peminjaman |
+| fine | INTEGER | Jumlah denda |
+| created_at | TIMESTAMP | Waktu data dibuat |
+| updated_at | TIMESTAMP | Waktu data diperbarui |
+
+D. Relasi Antar Tabel
+
+| Relasi | Jenis | Penjelasan |
+|---|---|---|
+| Users → Loans | One-to-Many | Satu pengguna dapat memiliki banyak transaksi peminjaman. |
+| Books → Loans | One-to-Many | Satu buku dapat tercatat dalam banyak transaksi peminjaman. |
+
+Tabel loans menjadi penghubung antara pengguna dan buku. Kolom user_id digunakan untuk mengetahui siapa yang meminjam, sedangkan book_id digunakan untuk mengetahui buku yang dipinjam.
+
+E. Diagram ERD
+
+```mermaid
+erDiagram
+    USERS ||--o{ LOANS : melakukan
+    BOOKS ||--o{ LOANS : tercatat_dalam
+
+    USERS {
+        bigint id PK
+        varchar name
+        varchar email UK
+        varchar password
+        varchar role
+        varchar kelas
+        timestamp email_verified_at
+        varchar remember_token
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    BOOKS {
+        bigint id PK
+        varchar title
+        varchar author
+        varchar publisher
+        integer year
+        integer stock
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    LOANS {
+        bigint id PK
+        bigint user_id FK
+        bigint book_id FK
+        date loan_date
+        date due_date
+        date returned_at
+        varchar status
+        integer fine
+        timestamp created_at
+        timestamp updated_at
+    }
+```
+
+erDiagram
+    direction TB
+
+    USERS {
+        bigint id PK
+        string name
+        string email UK
+        string password
+        string role
+        string kelas
+        timestamp email_verified_at
+    }
+
+    BOOKS {
+        bigint id PK
+        string title
+        string author
+        string publisher
+        int year
+        int stock
+    }
+
+    LOANS {
+        bigint id PK
+        bigint user_id FK
+        bigint book_id FK
+        date loan_date
+        date due_date
+        date returned_at
+        string status
+        int fine
+    }
+
+    USERS ||--o{ LOANS : "memiliki"
+    LOANS }o--|| BOOKS : "mencatat"
+
+F. Kesimpulan ERD
+
+Struktur database aplikasi terdiri dari tiga tabel utama yang saling berhubungan. Tabel users menyimpan data pengguna, tabel books menyimpan informasi buku, sedangkan tabel loans menyimpan transaksi peminjaman.
+
+Hubungan antar tabel menggunakan Primary Key dan Foreign Key sehingga data peminjaman dapat dikaitkan dengan pengguna dan buku yang sesuai.
