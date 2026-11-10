@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('author');
-            $table->string('publisher');
-            $table->integer('year');
-            $table->integer('stock')->default(0);
-            $table->timestamps();
-        });
+    Schema::create('buku', function (Blueprint $table) {
+        $table->id();
+        $table->string('judul');
+        $table->foreignId('kategori_id')->constrained('kategoris')->onDelete('cascade');  
+        $table->timestamps();
+});
     }
 
     /**

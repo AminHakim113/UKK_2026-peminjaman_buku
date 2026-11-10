@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
 
         Book::create(['title' => 'Kapan tidak ada blonde di nordchlife', 'author' => 'Taro and The gang', 'publisher' => 'anjaypt', 'year' => 2026, 'stock' => 1]);
         Book::create(['title' => 'BumiRestoe', 'author' => 'SayaKekna', 'publisher' => 'Sayamosaja', 'year' => 1914, 'stock' => 4]);
+        Book::create(['title' => 'Bandung dan Kita Kala itu', 'author' => 'dilana', 'publisher' => 'milea', 'year' => 1945, 'stock' => 2]);
     }
 }
