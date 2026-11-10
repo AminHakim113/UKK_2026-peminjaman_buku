@@ -1,0 +1,138 @@
+
+/* BACKGROUND */
+.fi-body {
+    background: #f1f5f9 !important;
+}
+
+/* SIDEBAR */
+.fi-sidebar {
+    background: #0f172a !important;
+    border-right: 1px solid #1e293b;
+}
+
+.fi-sidebar-header {
+    background: #0f172a !important;
+    border-bottom: 1px solid #334155;
+}
+
+.fi-sidebar-header .fi-logo {
+    color: white !important;
+}
+
+.fi-sidebar-item-label {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+}
+
+.fi-sidebar-item-icon {
+    color: #94a3b8 !important;
+}
+
+.fi-sidebar-item-button {
+    border-radius: 10px !important;
+    margin-bottom: 4px;
+    transition: 0.2s;
+}
+
+.fi-sidebar-item-button:hover {
+    background: #1e293b !important;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-button {
+    background: #2563eb !important;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-label,
+.fi-sidebar-item-active .fi-sidebar-item-icon {
+    color: white !important;
+}
+
+/* TOPBAR */
+.fi-topbar {
+    background: white !important;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+/* MAIN CONTENT */
+.fi-main {
+    background: #f1f5f9 !important;
+}
+
+.fi-header-heading {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+.fi-header-subheading {
+    color: #64748b !important;
+}
+
+/* SECTION */
+.fi-section {
+    background: white !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+
+/* DASHBOARD STATISTICS */
+.fi-wi-stats-overview-stat {
+    background: white !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    padding: 20px !important;
+    box-shadow: 0 3px 12px rgba(15, 23, 42, 0.04);
+}
+
+/* TABLE */
+.fi-ta-outer {
+    background: white !important;
+    border-radius: 14px !important;
+    border: 1px solid #e2e8f0 !important;
+    overflow: hidden;
+}
+
+.fi-ta-header-cell {
+    background: #f8fafc !important;
+    color: #475569 !important;
+    font-weight: 700 !important;
+}
+
+.fi-ta-row:hover {
+    background: #eff6ff !important;
+}
+
+/* BUTTON */
+.fi-btn {
+    border-radius: 9px !important;
+    font-weight: 600 !important;
+    transition: 0.2s;
+}
+
+/* FORM */
+.fi-input-wrp {
+    border-radius: 9px !important;
+    border-color: #cbd5e1 !important;
+}
+
+.fi-input-wrp:focus-within {
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* BADGE */
+.fi-badge {
+    border-radius: 7px !important;
+    font-weight: 600 !important;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .fi-main {
+        padding: 12px;
+    }
+
+    .fi-section {
+        border-radius: 10px !important;
+    }
+}
