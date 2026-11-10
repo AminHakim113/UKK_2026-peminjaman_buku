@@ -1,66 +1,250 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+APLIKASI PEMINJAMAN BUKU
+Laravel 12 & Filament 4
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+1. Deskripsi Program
 
-## About Laravel
+Aplikasi Peminjaman Buku merupakan aplikasi berbasis web yang dibuat untuk membantu pengelolaan perpustakaan sekolah. Aplikasi ini digunakan untuk mengelola data buku, data pengguna, serta transaksi peminjaman dan pengembalian buku.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi dikembangkan menggunakan Laravel 12 sebagai framework utama dan Filament 4 untuk mengelola data melalui panel administrasi.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Sistem memiliki dua jenis pengguna, yaitu admin dan siswa. Admin bertugas mengelola data perpustakaan, sedangkan siswa dapat melihat daftar buku, melakukan peminjaman, dan melihat riwayat peminjamannya.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Hak Akses Pengguna
 
-## Learning Laravel
+| Pengguna | Hak Akses |
+|---|---|
+| Admin | Mengelola data buku, melihat transaksi peminjaman, dan mengelola akun pengguna. |
+| Siswa | Melihat buku, melakukan peminjaman, dan melihat riwayat peminjaman sendiri. |
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Akun yang melakukan pendaftaran melalui halaman Sign Up secara otomatis mendapatkan role siswa. Admin dapat dibuat melalui proses pengisian data awal menggunakan DatabaseSeeder.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Fitur Utama
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Fitur | Deskripsi |
+|---|---|
+| Login dan Registrasi | Digunakan untuk masuk dan membuat akun pengguna. |
+| Manajemen Buku | Mengelola judul, penulis, penerbit, tahun terbit, dan stok buku. |
+| Manajemen Pengguna | Mengelola akun admin dan siswa. |
+| Peminjaman Buku | Memungkinkan siswa meminjam buku yang tersedia. |
+| Pengembalian Buku | Memperbarui status peminjaman dan mengembalikan stok buku. |
+| Perhitungan Denda | Menghitung denda berdasarkan jumlah hari keterlambatan. |
+| Dashboard | Menampilkan informasi jumlah buku, anggota, dan peminjaman aktif. |
 
-## Laravel Sponsors
+Ketentuan Peminjaman
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Maksimal 3 buku yang masih dipinjam oleh satu siswa.
+- Lama peminjaman adalah 7 hari.
+- Denda keterlambatan sebesar Rp1.000 per hari.
+- Stok buku berkurang ketika peminjaman berhasil.
+- Stok buku bertambah ketika buku dikembalikan.
+- Status peminjaman berubah dari `dipinjam` menjadi `dikembalikan`.
 
-### Premium Partners
+### Teknologi yang Digunakan
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+| Teknologi | Kegunaan |
+|---|---|
+| PHP | Bahasa pemrograman aplikasi. |
+| Laravel 12 | Framework untuk membangun aplikasi web. |
+| Filament 4 | Membuat panel administrasi dan pengelolaan data. |
+| MySQL | Menyimpan data aplikasi. |
+| XAMPP | Menjalankan server lokal dan database. |
+| Composer | Mengelola library PHP. |
+| Blade | Template tampilan Laravel. |
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. Dokumentasi Fungsi/Prosedur
 
-## Code of Conduct
+Bagian ini menjelaskan beberapa file, fungsi, dan bagian kode yang digunakan dalam aplikasi beserta kegunaannya.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+A. Model User
 
-## Security Vulnerabilities
+Lokasi: `app/Models/User.php`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Model User digunakan untuk mengelola data akun admin dan siswa.
 
-## License
+| Elemen | Jenis | Keterangan |
+|---|---|---|
+| $fillable | Properti | Menentukan kolom yang dapat diisi, seperti name, email, password, role, dan kelas. |
+| $hidden | Properti | Menyembunyikan password dan remember_token ketika data diubah menjadi array atau JSON. |
+| casts() | Fungsi | Mengatur tipe data dan melakukan hashing otomatis pada password. |
+| isAdmin() | Fungsi | Memeriksa apakah pengguna memiliki role admin. |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Contoh fungsi:
+
+```php
+public function isAdmin(): bool
+{
+    return $this->role === 'admin';
+}
+```
+
+Fungsi tersebut digunakan untuk membedakan admin dan siswa berdasarkan nilai role pada database.
+
+B. Model Book
+
+Lokasi: `app/Models/Book.php`
+
+Model Book digunakan untuk mengelola informasi buku yang tersimpan di database.
+
+| Elemen | Jenis | Keterangan |
+|---|---|---|
+| $fillable | Properti | Menentukan kolom buku yang dapat diisi, yaitu title, author, publisher, year, dan stock. |
+| loans() | Relasi | Menghubungkan data buku dengan transaksi peminjaman jika relasi hasMany didefinisikan pada model. |
+
+C. Model Loan
+
+Lokasi: `app/Models/Loan.php`
+
+Model Loan digunakan untuk menyimpan dan mengelola transaksi peminjaman buku.
+
+| Elemen | Jenis | Keterangan |
+|---|---|---|
+| $fillable | Properti | Menentukan data transaksi yang dapat disimpan, seperti user_id, book_id, loan_date, due_date, returned_at, status, dan fine. |
+| $casts | Properti | Mengatur kolom tanggal agar dapat diproses sebagai objek tanggal. |
+| user() | Relasi | Menghubungkan transaksi dengan pengguna yang meminjam buku menggunakan BelongsTo. |
+| book() | Relasi | Menghubungkan transaksi dengan buku yang dipinjam menggunakan BelongsTo. |
+
+D. BookResource
+
+Lokasi: `app/Filament/Resources/Books/BookResource.php`
+
+BookResource digunakan untuk mengatur pengelolaan data buku melalui Filament.
+
+| Elemen | Jenis | Keterangan |
+|---|---|---|
+| getAuthorizationResponse() | Fungsi | Mengatur izin akses berdasarkan jenis pengguna. |
+| viewAny | Hak akses | Mengizinkan admin dan siswa melihat daftar buku. |
+| Response::allow() | Fungsi | Memberikan izin kepada pengguna. |
+| Response::deny() | Fungsi | Menolak akses pengguna. |
+
+Admin memiliki izin untuk mengelola data buku, sedangkan siswa hanya diberikan akses untuk melihat daftar buku.
+
+E. BooksTable
+
+Lokasi: `app/Filament/Resources/Books/Tables/BooksTable.php`
+
+BooksTable digunakan untuk mengatur tampilan tabel buku dan tindakan yang tersedia pada setiap data.
+
+| Fungsi | Keterangan |
+|---|---|
+| Action::make('pinjam') | Membuat tombol peminjaman buku. |
+| requiresConfirmation() | Meminta konfirmasi sebelum peminjaman dilakukan. |
+| visible() | Mengatur tombol peminjaman agar hanya muncul untuk siswa. |
+| disabled() | Menonaktifkan tombol jika stok buku habis. |
+| Loan::create() | Menyimpan transaksi peminjaman ke database. |
+| decrement('stock') | Mengurangi stok buku sebanyak satu. |
+| Notification::make() | Menampilkan pemberitahuan kepada pengguna. |
+
+Pada proses peminjaman, sistem terlebih dahulu menghitung jumlah buku yang masih dipinjam oleh siswa. Jika jumlahnya sudah mencapai tiga buku, sistem akan menolak peminjaman baru.
+
+F. LoanResource
+
+Lokasi: `app/Filament/Resources/Loans/LoanResource.php`
+
+LoanResource digunakan untuk mengatur data peminjaman dan membatasi akses pengguna terhadap transaksi.
+
+| Fungsi | Keterangan |
+|---|---|
+| getEloquentQuery() | Mengatur data transaksi yang ditampilkan. |
+| parent::getEloquentQuery() | Mengambil query transaksi dari resource utama. |
+| where('user_id', auth()->id()) | Membatasi siswa agar hanya melihat transaksi miliknya. |
+| getAuthorizationResponse() | Mengatur izin untuk melihat dan mengelola data transaksi. |
+
+Admin dapat melihat seluruh data peminjaman, sedangkan siswa hanya dapat melihat transaksi miliknya sendiri.
+
+G. LoansTable
+
+Lokasi: `app/Filament/Resources/Loans/Tables/LoansTable.php`
+
+LoansTable digunakan untuk menampilkan transaksi peminjaman dan mengatur proses pengembalian buku.
+
+| Fungsi | Keterangan |
+|---|---|
+| Action::make('kembalikan') | Membuat tombol pengembalian buku. |
+| requiresConfirmation() | Meminta konfirmasi sebelum buku dikembalikan. |
+| visible() | Menampilkan tombol hanya pada transaksi berstatus dipinjam. |
+| diffInDays() | Menghitung jumlah hari keterlambatan. |
+| update() | Memperbarui tanggal kembali, status, dan denda. |
+| increment('stock') | Menambahkan kembali stok buku. |
+| Notification::make() | Menampilkan pemberitahuan bahwa buku berhasil dikembalikan. |
+
+Contoh perhitungan denda:
+
+```php
+$fine = max(0, $telat) * 1000;
+```
+
+Jika keterlambatan sebanyak tiga hari, denda yang dihitung adalah Rp3.000.
+
+H. UserResource
+
+Lokasi: `app/Filament/Resources/Users/UserResource.php`
+
+UserResource digunakan untuk mengatur data akun pengguna melalui Filament.
+
+| Elemen | Jenis | Keterangan |
+|---|---|---|
+| getAuthorizationResponse() | Fungsi | Membatasi pengelolaan akun hanya untuk admin. |
+| isAdmin() | Fungsi | Memeriksa apakah pengguna merupakan admin. |
+| Response::allow() | Fungsi | Memberikan izin pengelolaan akun kepada admin. |
+| Response::deny() | Fungsi | Menolak akses pengguna selain admin. |
+
+I. UserForm
+
+Lokasi: `app/Filament/Resources/Users/Schemas/UserForm.php`
+
+UserForm digunakan untuk mengatur formulir pembuatan dan pengubahan akun pengguna.
+
+| Fungsi | Keterangan |
+|---|---|
+| TextInput::make() | Membuat kolom input data pengguna. |
+| Select::make('role') | Membuat pilihan role admin dan siswa. |
+| options() | Menentukan pilihan yang tersedia. |
+| default('siswa') | Menetapkan role siswa sebagai nilai bawaan. |
+| dehydrated() | Mengatur apakah nilai password ikut disimpan. |
+| required() | Menentukan apakah kolom wajib diisi. |
+
+J. StatsOverview
+
+Lokasi: `app/Filament/Widgets/StatsOverview.php`
+
+StatsOverview digunakan untuk menampilkan informasi statistik pada dashboard.
+
+| Fungsi | Keterangan |
+|---|---|
+| Book::count() | Menghitung jumlah judul buku. |
+| User::where('role', 'siswa')->count() | Menghitung jumlah anggota siswa. |
+| Loan::where('status', 'dipinjam')->count() | Menghitung jumlah transaksi yang masih aktif. |
+| Stat::make() | Membuat tampilan statistik pada dashboard. |
+
+
+
+3. Debugging
+
+Debugging merupakan proses mencari dan memperbaiki kesalahan pada program. Proses ini dilakukan agar aplikasi dapat berjalan sesuai dengan fungsi yang telah dibuat.
+
+Berikut beberapa contoh error yang mungkin muncul selama proses pengembangan aplikasi.
+
+A. Daftar Error dan Penyelesaian
+
+| No. | Error | Penyebab | Cara Mengatasi |
+|---|---|---|---|
+| 1 | Unknown database 'peminjaman_buku' | Database belum dibuat atau nama database salah. | Membuat database melalui phpMyAdmin dan memeriksa DB_DATABASE pada file .env. |
+| 2 | Base table or view not found | Tabel yang dibutuhkan belum tersedia di database. | Menjalankan perintah php artisan migrate. |
+| 3 | SQLSTATE[23000]: Integrity constraint violation | Foreign key mengarah ke data yang tidak tersedia. | Memastikan user_id dan book_id sesuai dengan data pada tabel induk. |
+| 4 | MassAssignmentException | Kolom yang ingin disimpan belum dimasukkan ke $fillable. | Menambahkan nama kolom yang diperlukan pada model. |
+| 5 | Class not found | Nama class, lokasi file, atau namespace tidak sesuai. | Memeriksa nama file dan namespace, kemudian menjalankan composer dump-autoload. |
+| 6 | Call to undefined relationship | Fungsi relasi belum dibuat atau nama relasi salah. | Menambahkan fungsi relasi yang sesuai pada model. |
+| 7 | Vite manifest not found | File frontend belum dibangun. | Menjalankan npm install dan npm run build. |
+
+B. Cara Melacak Kesalahan Program
+
+Berikut beberapa perintah yang dapat digunakan untuk membantu menemukan masalah.
+
+1. Memeriksa daftar route
+
+```bash
+php artisan route:list
+```
+
+Digunakan
