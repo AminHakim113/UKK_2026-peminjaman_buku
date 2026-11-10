@@ -482,7 +482,18 @@ erDiagram
 ```
 
 erDiagram
-    direction TB
+    direction LR
+
+    LOANS {
+        bigint id PK
+        bigint user_id FK
+        bigint book_id FK
+        date loan_date
+        date due_date
+        date returned_at
+        string status
+        int fine
+    }
 
     USERS {
         bigint id PK
@@ -503,20 +514,8 @@ erDiagram
         int stock
     }
 
-    LOANS {
-        bigint id PK
-        bigint user_id FK
-        bigint book_id FK
-        date loan_date
-        date due_date
-        date returned_at
-        string status
-        int fine
-    }
-
-    USERS ||--o{ LOANS : "memiliki"
-    LOANS }o--|| BOOKS : "mencatat"
-
+    LOANS }o--|| USERS : "dipinjam oleh"
+    LOANS }o--|| BOOKS : "berisi buku"
 F. Kesimpulan ERD
 
 Struktur database aplikasi terdiri dari tiga tabel utama yang saling berhubungan. Tabel users menyimpan data pengguna, tabel books menyimpan informasi buku, sedangkan tabel loans menyimpan transaksi peminjaman.
